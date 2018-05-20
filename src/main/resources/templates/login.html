@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login form</title>
+</head>
+<body>
+<div style="text-align: center;">
+
+    <h1 th:if="${isLoginCorrect != null}"
+        th:text="${isLoginCorrect ? #messages.msg('LoginTemplate.loggedIn') : #messages.msg('LoginTemplate.badData')}"></h1>
+
+    <form method="post" action="/login" th:object="${loginForm}">
+        Login: <input type="text" th:field="*{login}"><br/>
+        <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span><br/>
+        Pass: <input type="text" th:field="*{password}"><br/>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span><br/>
+        <input type="submit" value="Let's try!">
+    </form>
+
+</div>
+</body>
+</html>
